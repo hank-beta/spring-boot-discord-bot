@@ -9,7 +9,6 @@ import java.util.Map;
 @Component
 public class CommandHolder {
 
-    private static CommandHolder INSTANCE = null;
     private final Map<CommandType, Commandable> commandableMap = new HashMap<>();
 
     public CommandHolder(List<Commandable> commandables) {
