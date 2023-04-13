@@ -3,6 +3,8 @@ package org.beta.demo.handler;
 import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.beta.demo.ChatLog;
+import org.beta.demo.ChatLogRepository;
 import org.beta.demo.command.CommandHolder;
 import org.beta.demo.command.CommandType;
 import org.beta.demo.utils.BotEventUtils;
@@ -15,13 +17,22 @@ import java.util.Arrays;
 @Service
 public class MessageReceiveHandler extends ListenerAdapter {
     private final CommandHolder holder;
+    private final ChatLogRepository chatLogRepository;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (BotEventUtils.isBot(event)) {
             return;
         }
+
         String message = BotEventUtils.extractRawMessage(event);
+
+        chatLogRepository.saveAndFlush(ChatLog.create(
+                event.getAuthor().getName(),
+                event.getAuthor().getId(),
+                message,
+                event.getMessage().getTimeCreated().toLocalDateTime()
+        ));
 
 
         if (!message.startsWith("ㅂㅌ")) {
