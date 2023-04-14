@@ -8,7 +8,9 @@ public enum CommandType {
     REACTION("사랑해", "안녕", "굿모닝"),
     RPS("도박", "ㄷㅂ", "ㄷ", "rps"),
     IMAGE("코코미", "에밀TS", "ㅋㅋㅁ"),
-    MYLOVE("미연시", "ㅁㅇㅅ");
+    MYLOVE("미연시", "ㅁㅇㅅ"),
+    SAVE_MUSIC("+play"),
+    TEST("테스트");
 
 
     private final Set<String> commandSet = new HashSet<>();

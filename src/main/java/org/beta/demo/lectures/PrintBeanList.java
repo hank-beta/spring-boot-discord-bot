@@ -1,4 +1,4 @@
-package org.beta.demo;
+package org.beta.demo.lectures;
 
 
 import lombok.extern.slf4j.Slf4j;

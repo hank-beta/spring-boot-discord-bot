@@ -35,8 +35,8 @@ public class MessageReceiveHandler extends ListenerAdapter {
         ));
 
 
-        if (!message.startsWith("ㅂㅌ")) {
-//            nonePrefixProcess(event, message);
+        if (message.startsWith("+play")) {
+            playPrefixProcess(event, message);
             return;
         }
 
@@ -57,5 +57,14 @@ public class MessageReceiveHandler extends ListenerAdapter {
     private void nonePrefixProcess(MessageReceivedEvent event, String message) {
         CommandType reactionCommand = CommandType.from(message);
         holder.getCommandableMap().get(reactionCommand).doCommand(event.getChannel(), event.getAuthor(), message);
+    }
+
+    private void playPrefixProcess(MessageReceivedEvent event, String message) {
+        String[] messageList = message.split(" ");
+        String command = messageList[0];
+        String videoUrl = messageList[1];
+        CommandType saveMusicCommand = CommandType.from(command);
+
+        holder.getCommandableMap().get(saveMusicCommand).doCommand(event.getChannel(), event.getAuthor(), videoUrl);
     }
 }

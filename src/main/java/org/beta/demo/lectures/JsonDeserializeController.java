@@ -1,0 +1,23 @@
+package org.beta.demo.lectures;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@Slf4j
+@RestController
+public class JsonDeserializeController {
+
+    @PostMapping ("/deser")
+    public MyData jsonDeserialize(@RequestBody RequestObject requestObject){
+        log.info("requestObject={}", requestObject);
+
+        MyData myData = new MyData();
+        myData.setName(requestObject.getName());
+
+        return myData;
+    }
+}
+
